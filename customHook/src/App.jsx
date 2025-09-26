@@ -24,12 +24,7 @@ const App = () => {
   };
 
   return (
-    <div
-      className="w-full h-screen bg-black flex flex-wrap justify-center items-center bg-cover bg-no-repeat"
-      style={{
-        backgroundImage: `url('https://images.pexels.com/photos/50987/cards-credit-credit-card-money-50987.jpeg')`,
-      }}
-    >
+    <div className="w-full h-screen bg-black flex flex-wrap justify-center items-center bg-cover bg-no-repeat">
       <div className="w-full">
         <div className="w-full max-w-md mx-auto border border-gray-60 rounded-lg p-5 backdrop-blur-sm bg-white/30">
           <form
