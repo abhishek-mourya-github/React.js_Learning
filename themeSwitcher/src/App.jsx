@@ -1,12 +1,15 @@
 import React from 'react';
 import './App.css'
+import ThemeContextProvider from './context/ThemeContextProvider';
+import Card from './components/Card';
+import ThemeButton from './components/ThemeButton';
 
 function App() {
-
   return (
-    <>
-       <h1 className='text-2xl bg-green-200'>Hello, Abhishek Mourya lets start building theme switcher</h1>
-    </>
+    <ThemeContextProvider>
+      <ThemeButton />
+      <Card />
+    </ThemeContextProvider>
   )
 }
 
