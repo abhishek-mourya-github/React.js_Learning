@@ -5,48 +5,52 @@ import ToDoForm from "./components/ToDoForm";
 import ToDoItem from "./components/ToDoItem";
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  const [todoList, setTodoList] = useState([]);
 
   const addTodo = (todo) => {
-    setTodos((prev) => [{id: Date.now(), ...todo}, ...prev])
-  }
+    setTodoList((prev) => [{ id: Date.now(), ...todo }, ...prev]);
+  };
 
   const updatedTodo = (id, todo) => {
-    setTodos((prev) => prev.map((prevTodo) => (prevTodo.id === id ? todo : prevTodo)))
-  }
+    setTodoList((prev) =>
+      prev.map((prevTodo) => (prevTodo.id === id ? todo : prevTodo))
+    );
+  };
 
   const deleteTodo = (id) => {
-    setTodos((prev) => prev.filter((todo) => todo.id !== id))
-  }
+    setTodoList((prev) => prev.filter((todo) => todo.id !== id));
+  };
 
   const toggleComplete = (id) => {
-     setTodos((prev) => prev.map((prevTodo) => prevTodo.id === id ? {...prevTodo, completed: !prevTodo.completed} : prevTodo))
-  }
+    setTodoList((prev) =>
+      prev.map((prevTodo) => prevTodo.id === id ? { ...prevTodo, completed: !prevTodo.completed } : prevTodo )
+    );
+  };
 
+  // Load todos from localStorage on first render
   useEffect(() => {
-      const todos = JSON.parse(localStorage.getItem("todos"));
-      if(todos && todos.length > 0){
-        setTodos(todos)
-      }
-  }, [])
+    const storedTodos = JSON.parse(localStorage.getItem("todos"));
+    if (storedTodos && storedTodos.length > 0) {
+      setTodoList(storedTodos);
+    }
+  }, []);
 
+  // Save todos to localStorage whenever todoList changes
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos))
-  }, [todos])
-
-
+    localStorage.setItem("todos", JSON.stringify(todoList));
+  }, [todoList]);
 
   return (
-    <TodoProvider value={{todos, addTodo, updatedTodo, deleteTodo, toggleComplete}}>
+    <TodoProvider value={{todos: todoList, addTodo, updatedTodo, deleteTodo, toggleComplete}}>
       <div className="flex flex-wrap min-h-screen items-center">
         <div className="w-full">
           <div className="w-full max-w-sm mx-auto flex justify-end mb-4">
             <ToDoForm />
           </div>
           <div className="w-full max-w-sm mx-auto">
-            {todos.map((todo) => (
-              <div key={todo.id}  className='w-full'>
-                 <ToDoItem todo={todo}/>
+            {todoList.map((todo) => (
+              <div key={todo.id} className="w-full">
+                <ToDoItem todo={todo} />
               </div>
             ))}
           </div>

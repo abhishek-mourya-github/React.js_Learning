@@ -1,6 +1,7 @@
 import { useContext, createContext } from "react";
 
 export const TodoContext = createContext({
+   // ye bas ye tarah ka blueprint he batayega ki context me kya kya values milengi.
     todos: [
         {
             id: 1,
@@ -15,9 +16,9 @@ export const TodoContext = createContext({
 })
 
 
-
+// kahi par useContext(TodoContext) likhne se acha he bas useTodo() likh taki easy rahe sab.
 export const useTodo = () => {
-    return useContext(TodoContext);
+    return useContext(TodoContext); 
 }
 
 export const TodoProvider = TodoContext.Provider;
