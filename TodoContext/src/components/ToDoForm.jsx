@@ -20,7 +20,7 @@ function ToDoForm() {
             <input
                 type="text"
                 placeholder="Write Todo..."
-                className="w-full border border-black/10 rounded-l-lg px-3 outline-none duration-150 bg-white/20 py-1.5"
+                className="w-[21vw] border border-black/10 rounded-l-lg px-3 outline-none duration-150 bg-gray-200 py-1.5"
                 value={todo}
                 onChange={(e) => setTodo(e.target.value)}
             />
