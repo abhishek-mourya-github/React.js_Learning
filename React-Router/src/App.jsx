@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import NotFound from "./Pages/NotFound";
 import Product from "./Pages/Product";
 import ProductMen from "./Pages/ProductMen";
 import ProductWomen from "./Pages/ProductWomen";
 import Course from "./Pages/Course";
 import CourseDetails from "./Pages/CourseDetails";
+import { ThemeContextData } from "./context/ThemeContext";
 
 const App = () => {
+  const { theme } = useContext(ThemeContextData);
+
   return (
-    <div className="h-screen bg-black text-white">
+    <div className={`h-screen ${theme === 'light' ? 'bg-white text-black' : 'bg-black text-white'}`}>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -27,7 +29,6 @@ const App = () => {
         <Route path="/course/:id" element={<CourseDetails />}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {/* <Footer /> */}
     </div>
   );
 };
