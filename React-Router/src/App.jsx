@@ -16,7 +16,7 @@ const App = () => {
   const { theme } = useContext(ThemeContextData);
 
   return (
-    <div className={`h-screen ${theme === 'light' ? 'bg-white text-black' : 'bg-black text-white'}`}>
+    <div className={`h-screen`}>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
